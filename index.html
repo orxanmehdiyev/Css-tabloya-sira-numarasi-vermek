@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<style type="text/css">
+	#yolcutablo {
+		width: 50%;
+		counter-reset: row-num;
+	}
+	#yolcutablo tr {
+		counter-increment: row-num;
+	}
+	#yolcutablo tr td:first-child::before {
+		content: counter(row-num) ". ";
+	}
+</style>
+
+<table border=1 id="yolcutablo">
+	<tr><td></td><td>one</td></tr>
+	<tr><td></td><td>two</td></tr>
+	<tr><td></td><td>three</td></tr>
+	<tr><td></td><td>three</td></tr>
+</table>
+<button id="sefer">ekle</button>
+<button id="sil">sil</button>
+<script src="jquery-2.2.4.min.js"></script>
+<script>
+	
+	$('#sefer').click(function(){
+		$ekle='';
+		$ekle+=
+		' <tr><td></td><td><button class="sil">sil</button></td></tr>';
+
+		$("#yolcutablo").append($ekle);
+
+		$(".sil").each(function(){
+			$(this).on("click",function(){
+				$(this).closest("tr").remove();
+			});
+		});
+	});
+</script>
